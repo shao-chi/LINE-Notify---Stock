@@ -45,8 +45,4 @@ if __name__ == "__main__":
             main(country='US', state='CLOSE')
             print(f"Send US Position {TW_now.format('YYYY-MM-DD')} - CLOSE")
 
-        if US_now.minute % 10 in [1,2,3,4,5,6,7,8,9,0]:
-            main(country='US', state='NOW')
-            print(f"Send US Position {US_now.format('YYYY-MM-DD HH:mm:ss')} - NOW")
-
         sleep(60 * SLEEP_MINUTES)
