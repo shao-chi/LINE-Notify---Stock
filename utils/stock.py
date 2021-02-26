@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from config import TW_REAL_TIME_URL, US_REAL_TIME_URL
+from config import FINMIND_API, US_REAL_TIME_URL
 
 
 def _convert_float(text):
@@ -12,11 +12,13 @@ def _convert_float(text):
 
 
 def _get_real_time_TW(stock_id):
-    stock_resquest = requests.get(TW_REAL_TIME_URL.format(stock_id))
-    stock_soup = BeautifulSoup(stock_resquest.text, 'html.parser')
-    stock_soup = stock_soup.find('span', id="Price1_lbTPrice")
+    parameter = {"dataset": "TaiwanStockPriceTick",
+                 "data_id": stock_id}
 
-    return _convert_float(stock_soup.text)
+    stock_resquest = requests.get(FINMIND_API, params=parameter)
+    stock_data = stock_resquest.json()['data']
+
+    return stock_data[-1]['deal_price']
 
 
 def _get_real_time_US(stock_id):
