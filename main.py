@@ -34,17 +34,17 @@ if __name__ == "__main__":
         main(country='TW', state='NOW')
 
         if TW_now.weekday() < 5:
-            if TW_now.hour == 9 and TW_now.minute > 0 and TW_now.minute < 9:
+            if TW_now.hour == 9 and TW_now.minute >= 0 and TW_now.minute <= 5:
                 main(country='TW', state='OPEN')
 
-            elif TW_now.hour == 13 and TW_now.minute > 30 and TW_now.minute < 39:
+            elif TW_now.hour == 13 and TW_now.minute >= 30 and TW_now.minute <= 35:
                 main(country='TW', state='CLOSE')
 
         if US_now.weekday() < 5:
-            if US_now.hour == 9 and US_now.minute > 30 and US_now.minute < 39:
+            if US_now.hour == 9 and US_now.minute >= 30 and US_now.minute <= 35:
                 main(country='US', state='OPEN')
 
-            elif US_now.hour == 16 and US_now.minute > 0 and US_now.minute < 9:
+            elif US_now.hour == 16 and US_now.minute >= 0 and US_now.minute <= 5:
                 main(country='US', state='CLOSE')
 
         sleep(60 * SLEEP_MINUTES)
